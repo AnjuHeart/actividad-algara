@@ -38,25 +38,14 @@ class _VistaSolicitandoNombreState extends State<VistaSolicitandoNombre> {
           controller: controlador,
         ),
         Container(
-            child: _usuarioValidado
-                ? null
-                : TextButton(
-                    style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.grey),
-                    ),
-                    onPressed: null,
-                    child: const Text('Ingresar'))),
-        Container(
-            child: !_usuarioValidado
-                ? null
-                : TextButton(
-                    style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.black),
-                    ),
-                    onPressed: () {},
-                    child: const Text('Ingresar'))),
+            child: TextButton(
+                style: ButtonStyle(
+                  foregroundColor: _usuarioValidado
+                      ? MaterialStateProperty.all<Color>(Colors.black)
+                      : MaterialStateProperty.all<Color>(Colors.grey),
+                ),
+                onPressed: _usuarioValidado ? () {} : null,
+                child: const Text('Ingresar'))),
       ]),
     );
   }
