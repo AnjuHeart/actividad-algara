@@ -16,7 +16,7 @@ class AplicacionInyectada extends StatelessWidget {
     return BlocProvider(
       create: (context) {
         BlocVerificacion blocVerificacion = BlocVerificacion();
-        Future.delayed(Duration(seconds: 2), () {
+        Future.delayed(const Duration(seconds: 2), () {
           blocVerificacion.add(Creado());
         });
 
@@ -35,15 +35,15 @@ class Aplicacion extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(title: Text('Clase 30/08/22')),
+        appBar: AppBar(title: const Text('Clase 30/08/22')),
         body: Builder(
           builder: (context) {
             var estado = context.watch<BlocVerificacion>().state;
             if (estado is Creandose) {
-              return Center(child: const VistaCreandose());
+              return const Center(child: VistaCreandose());
             }
             if (estado is SolicitandoNombre) {
-              return VistaSolicitandoNombre();
+              return const VistaSolicitandoNombre();
             }
             return const Center(child: Text('huye'));
           },

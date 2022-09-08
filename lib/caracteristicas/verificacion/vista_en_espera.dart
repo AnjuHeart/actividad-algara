@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class VistaSolicitandoNombre extends StatefulWidget {
-  VistaSolicitandoNombre({Key? key}) : super(key: key);
+  const VistaSolicitandoNombre({Key? key}) : super(key: key);
 
   @override
   State<VistaSolicitandoNombre> createState() => _VistaSolicitandoNombreState();
@@ -13,7 +13,6 @@ class _VistaSolicitandoNombreState extends State<VistaSolicitandoNombre> {
 
   @override
   void initState() {
-    // TODO: implement initState
     controlador = TextEditingController();
     controlador.addListener(escuchandoValidador);
     super.initState();
@@ -37,15 +36,14 @@ class _VistaSolicitandoNombreState extends State<VistaSolicitandoNombre> {
           ),
           controller: controlador,
         ),
-        Container(
-            child: TextButton(
-                style: ButtonStyle(
-                  foregroundColor: _usuarioValidado
-                      ? MaterialStateProperty.all<Color>(Colors.black)
-                      : MaterialStateProperty.all<Color>(Colors.grey),
-                ),
-                onPressed: _usuarioValidado ? () {} : null,
-                child: const Text('Ingresar'))),
+        TextButton(
+            style: ButtonStyle(
+              foregroundColor: _usuarioValidado
+                  ? MaterialStateProperty.all<Color>(Colors.black)
+                  : MaterialStateProperty.all<Color>(Colors.grey),
+            ),
+            onPressed: _usuarioValidado ? () {} : null,
+            child: const Text('Ingresar')),
       ]),
     );
   }
