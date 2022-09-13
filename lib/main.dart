@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_app_1/caracteristicas/verificacion/vista_creandose.dart';
-import 'package:flutter_app_1/caracteristicas/verificacion/vista_en_espera.dart';
-import 'package:flutter_app_1/caracteristicas/bloc.dart';
+import 'package:flutter_app_1/verificacion/vistas/vista_creandose.dart';
+import 'package:flutter_app_1/verificacion/vistas/vista_en_espera.dart';
+import 'package:flutter_app_1/verificacion/bloc.dart';
 
 void main() {
   runApp(const AplicacionInyectada());
