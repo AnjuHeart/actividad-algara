@@ -9,25 +9,75 @@ abstract class RepositorioVerificacion{
 }
 
 class RepositorioPruebasVerificacion extends RepositorioVerificacion{
-  final String benthor = """<?xml version="1.0" encoding="utf-8"?>
-                            <user id="597373" name="benthor" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
-										        <firstname value="Benthor" />
-                            <lastname value="Benthor" />
-                            <avatarlink value="N/A" />
-                            <yearregistered value="2012" />
-                            <lastlogin value="2022-05-31" />
-                            <stateorprovince value="" />
-                            <country value="" />
-                            <webaddress value="" />
-                            <xboxaccount value="" />
-                            <wiiaccount value="" />
-                            <psnaccount value="" />
-                            <battlenetaccount value="" />
-                            <steamaccount value="" />
-                            <traderating value="0" />	
-				</user>""";
-  final String amlo = 
-                  """<user id="" name="" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+
+  Either<Problema,RegistroUsuario> obenerRegistroUsuarioDesdeXML(XmlDocument documento) {
+
+    const elementAnio = 'yearregistered';
+    const elementNombre = 'firstname';
+    const elementApellido = 'lastname';
+    const elementEstado = 'stateorprovince';
+    const elementPais = 'country';
+    const valor = 'value';
+
+    Either<Problema,String> anio = obtenerValorCampoXML(documento,elementAnio);
+    Either<Problema,String> nombre= obtenerValorCampoXML(documento,elementNombre);
+    Either<Problema,String> apellido= obtenerValorCampoXML(documento,elementApellido);
+    Either<Problema,String> estado= obtenerValorCampoXML(documento,elementEstado);
+    Either<Problema,String> pais= obtenerValorCampoXML(documento,elementPais);
+
+    if([anio,nombre,pais,estado,apellido]
+      .any((element) => element.isLeft())){
+        return Left(VersionIncorrectaXML());
+    }
+
+    final valoresRegistro = [anio,apellido,estado,nombre,pais]
+      .map((e) => e.getOrElse((l) => ''))
+      .toList();
+
+    if(valoresRegistro[0].isEmpty){
+      return Left(VersionIncorrectaXML());
+    }
+
+    return Right(RegistroUsuario.constructor(propuestaAnio: valoresRegistro[0],
+                                propuestaApellido: valoresRegistro[1],
+                                propuestaEstado: valoresRegistro[2],
+                                propuestaNombre: valoresRegistro[3],
+                                propuestaPais: valoresRegistro[4]));
+  }
+
+  Either<Problema,String> obtenerValorCampoXML(XmlDocument documento, String campo){
+      const atributoValor = 'value';
+      final valoresEncontrados = documento.findAllElements(campo);
+      if(valoresEncontrados.isEmpty) return Left(VersionIncorrectaXML());
+
+      final String? valorARegresar= valoresEncontrados.first.getAttribute(atributoValor);
+      if(valorARegresar == null){
+        return Left(VersionIncorrectaXML());
+      }
+      return Right(valorARegresar);
+  }
+  
+  @override
+  Either<Problema, RegistroUsuario> obenerRegistroUsuario(NickFormado nick) {
+    const String _benthor = """<?xml version="1.0" encoding="utf-8"?>
+                          <user id="597373" name="benthor" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+										      <firstname value="Benthor" />
+                          <lastname value="Benthor" />
+                          <avatarlink value="N/A" />
+                          <yearregistered value="2012" />
+                          <lastlogin value="2022-05-31" />
+                          <stateorprovince value="" />
+                          <country value="" />
+                          <webaddress value="" />
+                          <xboxaccount value="" />
+                          <wiiaccount value="" />
+                          <psnaccount value="" />
+                          <battlenetaccount value="" />
+                          <steamaccount value="" />
+                          <traderating value="0" />	
+				                </user>""";
+    const String _amlo ="""<?xml version="1.0" encoding="utf-8"?>
+                      <user id="" name="" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
                         <firstname value=""/>
                         <lastname value=""/>
                         <avatarlink value="N/A"/>
@@ -43,26 +93,36 @@ class RepositorioPruebasVerificacion extends RepositorioVerificacion{
                         <steamaccount value=""/>
                         <traderating value="362"/>
                       </user>""";
-  @override
-  Either<Problema,RegistroUsuario> obenerRegistroUsuario(NickFormado nick) {
-    final documento = XmlDocument.parse(benthor);
-    final nodo = documento.findAllElements('yearregistered');
-    final String valor = nodo.first.getAttribute('value') ?? "";
-    
-    if(valor.isEmpty){
-      return Left(UsuarioNoRegistrado());
+    const String _incorrecto ="""<?xml version="1.0" encoding="utf-8"?>
+                      <user id="" name="" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+                        <firstnfame value=""/>
+                        <lastndame value=""/>
+                        <avatardlink value="N/A"/>
+                        <yearredgistered value=""/>
+                        <lastldogin value=""/>
+                        <stateodrprovince value=""/>
+                        <coundtry value=""/>
+                        <webaddddress value=""/>
+                        <xbodxaccount value=""/>
+                        <wiiacddcount value=""/>
+                        <psnaccount value=""/>
+                        <badttldenetaccount value=""/>
+                        <steadmaccount value=""/>
+                        <trdaderating value="362"/>
+                      </user>""";
+    if(nick.valor == 'benthor'){
+      final documento = XmlDocument.parse(_benthor);
+      return obenerRegistroUsuarioDesdeXML(documento);
     }
-
-    String nombre= documento.findAllElements('firstname').first.getAttribute('value') ?? "";
-    String apellido= documento.findAllElements('lastname').first.getAttribute('value') ?? "";
-    String estado= documento.findAllElements('stateorprovince').first.getAttribute('value') ?? "";
-    String pais= documento.findAllElements('country').first.getAttribute('value') ?? "";
-
-    return Right(RegistroUsuario.constructor(propuestaAnio: valor,
-                                propuestaApellido: apellido,
-                                propuestaEstado: estado,
-                                propuestaNombre: nombre,
-                                propuestaPais: pais));
+    if(nick.valor == 'amlo'){
+      final documento = XmlDocument.parse(_amlo);
+      return obenerRegistroUsuarioDesdeXML(documento);
+    }
+    if(nick.valor == 'incorrecto'){
+      final documento = XmlDocument.parse(_incorrecto);
+      return obenerRegistroUsuarioDesdeXML(documento);
+    }
+    return Left(UsuarioNoRegistrado());
   }
 
 }

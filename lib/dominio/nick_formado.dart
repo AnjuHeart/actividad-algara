@@ -2,10 +2,10 @@ class NickFormado{
   late final String valor;
   NickFormado._(this.valor);
 
-  NickFormado(String propuesta) {
+  factory NickFormado.constructor(String propuesta) {
     if(propuesta.trim().isEmpty){
       throw('Nick no formado');
     }
-    NickFormado._(propuesta);
+    return NickFormado._(propuesta);
   }
 }
