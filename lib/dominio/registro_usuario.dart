@@ -7,6 +7,7 @@ class RegistroUsuario{
   late final String apellido;
   late final String pais;
   late final String estado;
+  String get getNombre => nombre;
   
   factory RegistroUsuario.constructor({
     required String propuestaAnio,
@@ -15,6 +16,7 @@ class RegistroUsuario{
     required String propuestaPais,
     required String propuestaEstado})
   {
+
     int? valorAnio = int.tryParse(propuestaAnio);
      if(valorAnio == null){
       throw (mensajeRegistroUsuarioError);

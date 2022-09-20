@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_app_1/verificacion/bloc.dart';
 
 class VistaSolicitandoNombre extends StatefulWidget {
   const VistaSolicitandoNombre({Key? key}) : super(key: key);
@@ -42,7 +44,11 @@ class _VistaSolicitandoNombreState extends State<VistaSolicitandoNombre> {
                   ? MaterialStateProperty.all<Color>(Colors.black)
                   : MaterialStateProperty.all<Color>(Colors.grey),
             ),
-            onPressed: _usuarioValidado ? () {} : null,
+            onPressed: _usuarioValidado ? () {
+              var bloc = context.read<BlocVerificacion>();
+              
+              bloc.add(NombreRecibido(controlador.text));
+            } : null,
             child: const Text('Ingresar')),
       ]),
     );
