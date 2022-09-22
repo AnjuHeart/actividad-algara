@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_1/dominio/problemas.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app_1/verificacion/vistas/vista_creandose.dart';
 import 'package:flutter_app_1/verificacion/vistas/vista_en_espera.dart';

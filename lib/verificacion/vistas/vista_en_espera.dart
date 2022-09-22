@@ -51,7 +51,6 @@ class _VistaSolicitandoNombreState extends State<VistaSolicitandoNombre> {
             onPressed: _usuarioValidado
                 ? () {
                     var bloc = context.read<BlocVerificacion>();
-
                     bloc.add(NombreRecibido(controlador.text));
                   }
                 : null,

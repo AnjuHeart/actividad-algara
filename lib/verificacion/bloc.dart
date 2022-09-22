@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_app_1/dominio/nick_formado.dart';
 import 'package:flutter_app_1/dominio/problemas.dart';
-import 'package:flutter_app_1/dominio/registro_usuario.dart';
 import 'package:flutter_app_1/verificacion/repositorio_verificacion.dart';
 
 class EventoVerificacion {}
