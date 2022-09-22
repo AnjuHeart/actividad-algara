@@ -29,14 +29,18 @@ class _VistaSolicitandoNombreState extends State<VistaSolicitandoNombre> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(children: [
-        TextField(
-          obscureText: true,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(),
-            labelText: 'Usuario',
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Center(
+          child: SizedBox(
+            width: 500,
+            child: TextField(
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Usuario',
+              ),
+              controller: controlador,
+            ),
           ),
-          controller: controlador,
         ),
         TextButton(
             style: ButtonStyle(
@@ -44,11 +48,13 @@ class _VistaSolicitandoNombreState extends State<VistaSolicitandoNombre> {
                   ? MaterialStateProperty.all<Color>(Colors.black)
                   : MaterialStateProperty.all<Color>(Colors.grey),
             ),
-            onPressed: _usuarioValidado ? () {
-              var bloc = context.read<BlocVerificacion>();
-              
-              bloc.add(NombreRecibido(controlador.text));
-            } : null,
+            onPressed: _usuarioValidado
+                ? () {
+                    var bloc = context.read<BlocVerificacion>();
+
+                    bloc.add(NombreRecibido(controlador.text));
+                  }
+                : null,
             child: const Text('Ingresar')),
       ]),
     );

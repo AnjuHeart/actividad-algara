@@ -47,11 +47,15 @@ class Aplicacion extends StatelessWidget {
             if (estado is SolicitandoNombre) {
               return const VistaSolicitandoNombre();
             }
-            if(estado is MostrandoNombre){
-              return  VistaMostrandoBusqueda(usuarioAnio: estado.anio, usuarioNombre: estado.nombre, usuarioApellido: estado.apellido, usuarioPais: estado.pais, usuarioEstado: estado.estado);
+            if (estado is MostrandoNombre) {
+              return VistaMostrandoBusqueda(
+                resultadoDeBusqueda: estado.mensaje,
+              );
             }
-            if (estado is MostrandoNombreNoConfirmado){
-              return const VistaMostrandoNoEncontrado();
+            if (estado is MostrandoNombreNoConfirmado) {
+              return VistaMostrandoBusqueda(
+                resultadoDeBusqueda: estado.mensaje,
+              );
             }
             return const Center(child: Text('huye'));
           },
