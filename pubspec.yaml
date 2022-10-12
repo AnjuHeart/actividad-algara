@@ -39,6 +39,7 @@ dependencies:
   fpdart: ^0.2.0
   xml: ^6.1.0
   test: ^1.21.1
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
