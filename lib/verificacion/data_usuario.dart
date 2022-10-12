@@ -24,14 +24,17 @@ class ChecadorDeJugadasDePrueba extends ChecadorDeJugadas {
       }
      */
   }
-  int obtenerTotalPaginas(String nick) {
-    /*
-      fetch https://boardgamegeek.com/xmlapi2/plays?username=$nick
-      int totalJugadas = document getelements "plays" first get attribute total .ceil
-      int pags = (totalJugadas / 10) .ceil
-      return pags
-     */
-    return 0;
+  Future<int> obtenerTotalPaginas(String nick) async {
+    if (nick == "benthor") {
+      return 2;
+    }
+    final respuesta = await http.get(
+        Uri.parse('https://boardgamegeek.com/xmlapi2/plays?username=$nick'));
+    final documento = XmlDocument.parse(respuesta.body);
+    int totalJugadas = int.parse(
+        documento.findAllElements("plays").first.getAttribute("total") ?? "0");
+    int paginas = (totalJugadas / 10).ceil();
+    return paginas;
   }
 
   @override
