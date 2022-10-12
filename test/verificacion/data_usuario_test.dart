@@ -11,4 +11,10 @@ void main() {
           contains("Aguila Roja"));
     });
   });
+  group('pruebas para funciones de data usuario', () {
+    test('funcion de obtener paginas', () {
+      ChecadorDeJugadasDePrueba checador = ChecadorDeJugadasDePrueba();
+      expect(checador.obtenerTotalPaginas("benthor"), equals(2));
+    });
+  });
 }
