@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_app_1/dominio/nick_formado.dart';
 import 'package:flutter_app_1/dominio/problemas.dart';
+import 'package:flutter_app_1/verificacion/data_usuario.dart';
 import 'package:flutter_app_1/verificacion/repositorio_verificacion.dart';
 
 class EventoVerificacion {}
@@ -13,6 +14,12 @@ class NombreRecibido extends EventoVerificacion {
   NombreRecibido(this.nombreAProcesar);
 }
 
+class IrAJuegos extends EventoVerificacion {
+  final String nombreUsuario;
+
+  IrAJuegos(this.nombreUsuario);
+}
+
 class NombreConfirmado extends EventoVerificacion {}
 
 class EstadoVerificacion {}
@@ -22,6 +29,12 @@ class Creandose extends EstadoVerificacion {}
 class SolicitandoNombre extends EstadoVerificacion {}
 
 class EsperandoConfirmacionNombre extends EstadoVerificacion {}
+
+class MostrandoJuegos extends EstadoVerificacion {
+  final List<String> juegos;
+
+  MostrandoJuegos(this.juegos);
+}
 
 class MostrandoNombre extends EstadoVerificacion {
   final String _nombre;
@@ -68,6 +81,12 @@ class BlocVerificacion extends Bloc<EventoVerificacion, EstadoVerificacion> {
           (l) => emit(MostrandoNombreNoConfirmado(l)),
           (r) => emit(MostrandoNombre(
               r.nombre, r.apellido, r.anioRegistro, r.pais, r.estado)));
+    });
+    on<IrAJuegos>((event, emit) {
+      ChecadorDeJugadasDePrueba checador = ChecadorDeJugadasDePrueba();
+      var coleccionUsuario =
+          checador.obtenerJuegos(NickFormado.constructor(event.nombreUsuario));
+      emit(MostrandoJuegos(coleccionUsuario.juegos));
     });
   }
 }
