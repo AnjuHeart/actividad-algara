@@ -9,3 +9,5 @@ class UsuarioNoRegistrado extends Problema{
 class VersionIncorrectaXML extends Problema{
   
 }
+
+class JuegoJugadoMalFormado extends Problema{}
