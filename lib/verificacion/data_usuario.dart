@@ -785,19 +785,41 @@ class ChecadorDeJugadasDePrueba extends ChecadorDeJugadas {
 </plays>
 """;
 
-  obtenerJuegosPorPaginaDesdeXML(XmlDocument document) {}
-
-  obtenerJuegosTodasLasPaginas(String nick) {
-    /*
-      List<String> juegos
-      int paginas =  obtenertotalpaginas (nick);
-      for (x=1;paginas;x++;){
-        var jugadasPagina = fetch https://boardgamegeek.com/xmlapi2/plays?username=benthor&page=$x
-        var coleccionporPagina = obtenerJuegosPorPaginaDesdeXML(jugadasPagina)
-        juegos.add()
-      }
-     */
+  List<String> obtenerJuegosPorPaginaDesdeXML(
+      String documentAsString, List<String> listaJuegosActual) {
+    final documento = XmlDocument.parse(documentAsString);
+    documento
+        .findAllElements("plays")
+        .first
+        .findAllElements("play")
+        .forEach((element) {
+      String itemName =
+          element.findAllElements("item").first.getAttribute("name") ?? "";
+      listaJuegosActual.add(itemName);
+    });
+    return listaJuegosActual.toSet().toList();
   }
+
+  List<String> obtenerJuegosTodasLasPaginas(String nick) {
+    List<String> juegos = [];
+    int paginas = obtenerTotalPaginas(nick);
+    for (var i = 0; i < paginas; i++) {
+      /*var documentosJugadasEstaPagina = fetch https://boardgamegeek.com/xmlapi2/plays?username=$nick&page=$x*/
+      var documentoJugadasEstaPagina = "";
+      if (nick == "benthor") {
+        if (i == 0) {
+          documentoJugadasEstaPagina = _benthorPagOne;
+        }
+        if (i == 1) {
+          documentoJugadasEstaPagina = _benthorPagTwo;
+        }
+        juegos =
+            obtenerJuegosPorPaginaDesdeXML(documentoJugadasEstaPagina, juegos);
+      }
+    }
+    return juegos;
+  }
+
   int obtenerTotalPaginas(String nick) {
     /*
     final respuesta = http.get(
@@ -817,6 +839,6 @@ class ChecadorDeJugadasDePrueba extends ChecadorDeJugadas {
   @override
   ColeccionJuegos obtenerJuegos(NickFormado nick) {
     return ColeccionJuegos.constructor(
-        propuestaJuegos: [], propuestaFechas: []);
+        propuestaJuegos: obtenerJuegosTodasLasPaginas(nick.valor));
   }
 }

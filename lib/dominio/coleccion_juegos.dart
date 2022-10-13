@@ -1,11 +1,11 @@
 class ColeccionJuegos {
   late final List<String> juegos;
-  late final List<int> fechaDeSalidaJuego;
 
-  ColeccionJuegos._(this.juegos, this.fechaDeSalidaJuego);
+  ColeccionJuegos._(this.juegos);
 
-  factory ColeccionJuegos.constructor(
-      {required propuestaJuegos, required propuestaFechas}) {
-    return ColeccionJuegos._(propuestaJuegos, propuestaFechas);
+  factory ColeccionJuegos.constructor({required List<String> propuestaJuegos}) {
+    return ColeccionJuegos._(
+      propuestaJuegos,
+    );
   }
 }

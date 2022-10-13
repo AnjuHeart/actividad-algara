@@ -8,7 +8,7 @@ void main() {
       ChecadorDeJugadasDePrueba checador = ChecadorDeJugadasDePrueba();
 
       expect(checador.obtenerJuegos(NickFormado.constructor("benthor")).juegos,
-          contains("Aguila Roja"));
+          contains("Race for the Galaxy"));
     });
   });
   group('pruebas para funciones de data usuario', () {
