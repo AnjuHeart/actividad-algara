@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_1/verificacion/vistas/vista_juegos.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app_1/verificacion/vistas/vista_creandose.dart';
 import 'package:flutter_app_1/verificacion/vistas/vista_en_espera.dart';
@@ -59,11 +60,7 @@ class Aplicacion extends StatelessWidget {
               );*/
             }
             if (estado is MostrandoJuegos) {
-              String prueba = "";
-              for (var juego in estado.juegos) {
-                prueba += juego + "\n";
-              }
-              return Text(prueba);
+              return VistaMostrandoJuegos(juegos: estado.juegos);
             }
             return const Center(child: Text('huye'));
           },
