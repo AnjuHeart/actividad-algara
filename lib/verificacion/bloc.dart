@@ -42,10 +42,11 @@ class MostrandoNombre extends EstadoVerificacion {
   final int _anio;
   final String _pais;
   final String _estado;
+  final String nombreUsuario;
 
   late String mensaje = "";
-  MostrandoNombre(
-      this._nombre, this._apellido, this._anio, this._pais, this._estado) {
+  MostrandoNombre(this._nombre, this._apellido, this._anio, this._pais,
+      this._estado, this.nombreUsuario) {
     mensaje = 'El usuario se registró en el año: ' + _anio.toString() + '\n';
     mensaje += 'Nombre del usuario: ' + _nombre + '\n';
     mensaje += 'Apellido del usurio: ' + _apellido + '\n';
@@ -79,8 +80,8 @@ class BlocVerificacion extends Bloc<EventoVerificacion, EstadoVerificacion> {
           NickFormado.constructor(event.nombreAProcesar));
       estadoUsuario.match(
           (l) => emit(MostrandoNombreNoConfirmado(l)),
-          (r) => emit(MostrandoNombre(
-              r.nombre, r.apellido, r.anioRegistro, r.pais, r.estado)));
+          (r) => emit(MostrandoNombre(r.nombre, r.apellido, r.anioRegistro,
+              r.pais, r.estado, event.nombreAProcesar)));
     });
     on<IrAJuegos>((event, emit) {
       ChecadorDeJugadasDePrueba checador = ChecadorDeJugadasDePrueba();
