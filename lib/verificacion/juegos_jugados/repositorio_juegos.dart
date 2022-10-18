@@ -3,7 +3,6 @@ import 'package:flutter_app_1/dominio/nick_formado.dart';
 import 'package:flutter_app_1/dominio/problemas.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:xml/xml.dart';
-import 'package:flutter_app_1/verificacion/juegos_jugados/benthor.xml';
 
 abstract class RepositorioJuegosJugados {
   Future<Either<Problema, Set<JuegoJugado>>> obtenerJuegosJugadosPorUsuario(
@@ -85,6 +84,8 @@ class RepositorioJuegosJugadosPruebas extends RepositorioJuegosJugados {
   @override
   Future<Either<Problema, Set<JuegoJugado>>> obtenerJuegosJugadosPorUsuario(
       NickFormado nick) {
+    XmlDocument documento = obtenerXMLDeUsuario(nick.valor);
+    Right(obtenerJuegosDesdeXML(documento));
     throw UnimplementedError();
   }
 }
