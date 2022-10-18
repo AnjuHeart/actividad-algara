@@ -27,6 +27,7 @@ void main() {
   test('Benthor ha jugado "Takenoko"', () async {
     RepositorioJuegosJugadosPruebas repositorio =
         RepositorioJuegosJugadosPruebas();
+    final takenoko = JuegoJugado.constructor(idPropuesta: "70919", nombrePropuesta: "Takenoko");
     final respuesta = await repositorio
         .obtenerJuegosJugadosPorUsuario(NickFormado.constructor('benthor'));
     respuesta.match((l) {
@@ -34,27 +35,26 @@ void main() {
     }, (r) {
       expect(
           r,
-          contains(JuegoJugado.constructor(
-              idPropuesta: "70919", nombrePropuesta: "Takenoko")));
+          contains(takenoko));
     });
   });
 
-  test('Benthor no ha jugado "Teotihuacan: City of Gods"', () async {
+  test('Benthor no ha jugado "Monopoly"', () async {
     RepositorioJuegosJugadosPruebas repositorio =
         RepositorioJuegosJugadosPruebas();
+    final monopoly = JuegoJugado.constructor(idPropuesta: "9", nombrePropuesta: "Monopoly");
     final respuesta = await repositorio
         .obtenerJuegosJugadosPorUsuario(NickFormado.constructor('benthor'));
     respuesta.match((l) {
-      expect(true, equals(false));
+      //expect(true, equals(false));
+      assert(false);
     }, (r) {
       expect(
-          !r.contains(JuegoJugado.constructor(
-              idPropuesta: "229853",
-              nombrePropuesta: "Teotihuacan: City of Gods")),
+          !r.contains(monopoly),
           true);
     });
   });
-  test('Para las funciones de obtener xml', () {
+  /*test('Para las funciones de obtener xml', () {
     RepositorioJuegosJugadosPruebas repositorio =
         RepositorioJuegosJugadosPruebas();
     final documento = repositorio.obtenerXMLDeUsuario("benthor");
@@ -78,5 +78,5 @@ void main() {
         juegos.contains(JuegoJugado.constructor(
             idPropuesta: "70919", nombrePropuesta: "Takenoko")),
         true);
-  });
+  });*/
 }

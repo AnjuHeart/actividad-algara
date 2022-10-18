@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plays username="fokuleh" userid="1518480" total="300" page="1" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <play id="64948230" date="2022-10-15" quantity="1" length="77" incomplete="0" nowinstats="0" location="Casa Club">
+        <item name="The Quacks of Quedlinburg" objecttype="thing" objectid="244521">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <players>
+            <player username="fokuleh" userid="1518480" name="Juan Carlos" startposition="1" color="White" score="60" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="NechiWero" startposition="2" color="White" score="53" new="0" rating="0" win="0" />
+            <player username="Ulises21" userid="849704" name="Ulises Vazquez" startposition="3" color="White" score="62" new="0" rating="0" win="1" />
+            <player username="Shammuk" userid="592933" name="Christian Solano" startposition="4" color="White" score="54" new="0" rating="0" win="0" />
+        </players>
+    </play>
+	<play id="64945178" date="2022-10-15" quantity="1" length="136" incomplete="0" nowinstats="0" location="Casa Club">
+        <item name="The Red Cathedral" objecttype="thing" objectid="227224">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <players>
+            <player username="fokuleh" userid="1518480" name="Juan Carlos" startposition="1" color="White" score="56" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="NechiWero" startposition="2" color="White" score="43" new="0" rating="0" win="0" />
+            <player username="Ulises21" userid="849704" name="Ulises Vazquez" startposition="3" color="White" score="43" new="0" rating="0" win="0" />
+            <player username="Shammuk" userid="592933" name="Christian Solano" startposition="4" color="White" score="43" new="0" rating="0" win="0" />
+        </players>
+    </play>
+	<play id="64515856" date="2022-09-30" quantity="1" length="25" incomplete="0" nowinstats="0" location="Restaurante ">
+        <item name="L.L.A.M.A." objecttype="thing" objectid="266083">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <players>
+            <player username="fokuleh" userid="1518480" name="Juan Carlos" startposition="1" color="White" score="-44" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="Isabel" startposition="2" color="White" score="-24" new="0" rating="0" win="1" />
+        </players>
+    </play>
+	<play id="64491995" date="2022-09-29" quantity="1" length="78" incomplete="0" nowinstats="0" location="Casa Club">
+        <item name="Clank!: A Deck-Building Adventure" objecttype="thing" objectid="201808">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <players>
+            <player username="fokuleh" userid="1518480" name="Juan Carlos" startposition="1" color="White" score="152" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="NechiWero" startposition="2" color="White" score="104" new="0" rating="0" win="0" />
+            <player username="Shammuk" userid="592933" name="Christian Solano" startposition="3" color="White" score="0" new="0" rating="0" win="0" />
+        </players>
+    </play>
+	<play id="64489158" date="2022-09-29" quantity="1" length="25" incomplete="0" nowinstats="0" location="Casa Club">
+        <item name="Majesty: For the Realm" objecttype="thing" objectid="230080">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <players>
+            <player username="fokuleh" userid="1518480" name="Juan Carlos" startposition="1" color="White" score="188" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="NechiWero" startposition="2" color="White" score="160" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="Vicente Munguia" startposition="3" color="White" score="173" new="0" rating="0" win="0" />
+        </players>
+    </play>

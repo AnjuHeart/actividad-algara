@@ -1,46 +1,47 @@
 
-<?xml version="1.0" encoding="utf-8"?><plays username="benthor" userid="597373" total="1737" page="1" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
-<play id="34017961" date="2019-02-21" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="The Dwarf King" objecttype="thing" objectid="85250">
-				<subtypes>
-					<subtype value="boardgame" />
-				</subtypes>
-			</item>
-		</play>
+<?xml version="1.0" encoding="utf-8"?>
+<plays username="benthor" userid="597373" total="1737" page="1" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+	<play id="34017961" date="2019-02-21" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
+		<item name="The Dwarf King" objecttype="thing" objectid="85250">
+			<subtypes>
+				<subtype value="boardgame" />
+			</subtypes>
+		</item>
+	</play>
 	<play id="34017955" date="2019-02-21" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Takenoko" objecttype="thing" objectid="70919">
-				<subtypes>
-					<subtype value="boardgame" />
-				</subtypes>
-			</item>
-		</play>
+		<item name="Takenoko" objecttype="thing" objectid="70919">
+			<subtypes>
+				<subtype value="boardgame" />
+			</subtypes>
+		</item>
+	</play>
 	<play id="34004213" date="2019-02-13" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="RoboRally" objecttype="thing" objectid="18">
-				<subtypes>
-					<subtype value="boardgame" />
-				</subtypes>
-			</item>
-		</play>
+		<item name="RoboRally" objecttype="thing" objectid="18">
+			<subtypes>
+				<subtype value="boardgame" />
+			</subtypes>
+		</item>
+	</play>
 	<play id="34004226" date="2019-02-13" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Takenoko" objecttype="thing" objectid="70919">
-				<subtypes>
-					<subtype value="boardgame" />
-				</subtypes>
-			</item>
-		</play>
+		<item name="Takenoko" objecttype="thing" objectid="70919">
+			<subtypes>
+				<subtype value="boardgame" />
+			</subtypes>
+		</item>
+	</play>
 	<play id="34004202" date="2019-02-12" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Splendor" objecttype="thing" objectid="148228">
-				<subtypes>
-					<subtype value="boardgame" />
-				</subtypes>
-			</item>
-		</play>
+		<item name="Splendor" objecttype="thing" objectid="148228">
+			<subtypes>
+				<subtype value="boardgame" />
+			</subtypes>
+		</item>
+	</play>
 	<play id="34004193" date="2019-02-07" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Just One" objecttype="thing" objectid="254640">
-				<subtypes>
-					<subtype value="boardgame" />
-					<subtype value="boardgameimplementation" />
-				</subtypes>
-			</item>
-		</play>
-	</plays>
+		<item name="Just One" objecttype="thing" objectid="254640">
+			<subtypes>
+				<subtype value="boardgame" />
+				<subtype value="boardgameimplementation" />
+			</subtypes>
+		</item>
+	</play>
+</plays>

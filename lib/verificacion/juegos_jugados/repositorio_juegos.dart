@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_app_1/dominio/coleccion_juegos.dart';
 import 'package:flutter_app_1/dominio/nick_formado.dart';
 import 'package:flutter_app_1/dominio/problemas.dart';
@@ -10,82 +12,80 @@ abstract class RepositorioJuegosJugados {
 }
 
 class RepositorioJuegosJugadosPruebas extends RepositorioJuegosJugados {
-  String benthor =
-      """<?xml version="1.0" encoding="utf-8"?><plays username="benthor" userid="597373" total="1737" page="1" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
-<play id="34017961" date="2019-02-21" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="The Dwarf King" objecttype="thing" objectid="85250">
-				<subtypes>
-					<subtype value="boardgame" />
-				</subtypes>
-			</item>
-		</play>
-	<play id="34017955" date="2019-02-21" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Takenoko" objecttype="thing" objectid="70919">
-				<subtypes>
-					<subtype value="boardgame" />
-				</subtypes>
-			</item>
-		</play>
-	<play id="34004213" date="2019-02-13" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="RoboRally" objecttype="thing" objectid="18">
-				<subtypes>
-					<subtype value="boardgame" />
-				</subtypes>
-			</item>
-		</play>
-	<play id="34004226" date="2019-02-13" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Takenoko" objecttype="thing" objectid="70919">
-				<subtypes>
-					<subtype value="boardgame" />
-				</subtypes>
-			</item>
-		</play>
-	<play id="34004202" date="2019-02-12" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Splendor" objecttype="thing" objectid="148228">
-				<subtypes>
-					<subtype value="boardgame" />
-				</subtypes>
-			</item>
-		</play>
-	<play id="34004193" date="2019-02-07" quantity="1" length="0" incomplete="0" nowinstats="0" location="">
-			<item name="Just One" objecttype="thing" objectid="254640">
-				<subtypes>
-					<subtype value="boardgame" />
-					<subtype value="boardgameimplementation" />
-				</subtypes>
-			</item>
-		</play>
-	</plays>
-""";
-  XmlDocument obtenerXMLDeUsuario(String usuario) {
-    if (usuario == "benthor") {
-      return XmlDocument.parse(benthor);
+  
+  int obtenerTotalPaginas(String nick) {
+    /*
+    final respuesta =  await http.get(
+        Uri.parse('https://boardgamegeek.com/xmlapi2/plays?username=$nick'));*/
+    String respuesta = "";
+    if (nick == "benthor") {
+      respuesta = File('./test/verificacion/juegos_jugados/benthor.xml').readAsStringSync();
     }
-    //fetch ↓ return fetched document.parse(fetch)
-    return XmlDocument();
+    if(nick == "fokuleh"){
+      respuesta = File('./test/verificacion/juegos_jugados/fokuleh1.xml').readAsStringSync();
+    }
+    final documento = XmlDocument.parse(respuesta);
+    int totalJugadas = int.parse(
+        documento.findAllElements("plays").first.getAttribute("total") ?? "0");
+    int paginas = (totalJugadas / 100).ceil();
+
+    return paginas;
   }
 
-  Set<JuegoJugado> obtenerJuegosDesdeXML(XmlDocument documento) {
-    Set<JuegoJugado> juegosJugados = {};
-    documento
-        .findAllElements("plays")
-        .first
-        .findAllElements("play")
-        .forEach((element) {
-      XmlElement item = element.findAllElements("item").first;
-      String itemName = item.getAttribute("name") ?? "";
-      String itemID = item.getAttribute("objectid") ?? "";
-      juegosJugados.add(JuegoJugado.constructor(
-          idPropuesta: itemID, nombrePropuesta: itemName));
-    });
-    return juegosJugados;
+  List<String> obtenerListaDeDireccionesXml(String nombre, int totalPaginas){
+    List<String> direcciones =[];
+    for (var i = 1; i <= totalPaginas; i++) {
+      if(nombre == "benthor"){
+        direcciones.add("./test/verificacion/juegos_jugados/benthor.xml");
+      }
+      
+
+      //direcciones.add("https://boardgamegeek.com/xmlapi2/plays?username=$nombre&pag=$i")
+    }
+  }
+  
+  List<String> _obtenerXmlJugadasDelDisco({required String nombre}){
+    List<String> jugadasPorPaginas = [];
+    if(nombre == "benthor"){
+      jugadasPorPaginas.add(File('./test/verificacion/juegos_jugados/benthor.xml').readAsStringSync());
+    }
+    if(nombre == "fokuleh"){
+      jugadasPorPaginas.add(File('./test/verificacion/juegos_jugados/fokuleh1.xml').readAsStringSync());
+      jugadasPorPaginas.add(File('./test/verificacion/juegos_jugados/fokuleh2.xml').readAsStringSync());
+      jugadasPorPaginas.add(File('./test/verificacion/juegos_jugados/fokuleh3.xml').readAsStringSync());
+    }
+    return jugadasPorPaginas;
+  }
+
+  Either<Problema, Set<JuegoJugado>> _obtenerJuegosJugadosDesdeXml(List<String> losXml){
+    try {
+      String xmlitemIndex = "item";
+      String itemNameAttribute = "name";
+      String itemIDAttribute = "objectid";
+
+      Set<JuegoJugado> setResultado = {};
+      for (var xml in losXml) {
+        XmlDocument documento = XmlDocument.parse(xml);
+        final losPlay = documento.findAllElements(xmlitemIndex);
+        final conjuntoIterable = losPlay.map((e){
+          String nombre = e.getAttribute(itemNameAttribute)!;
+          String id = e.getAttribute(itemIDAttribute)!;
+          return JuegoJugado.constructor(idPropuesta: id, nombrePropuesta: nombre);
+        });
+        final conjunto = Set<JuegoJugado>.from(conjuntoIterable);
+        setResultado.addAll(conjunto);
+      }
+      return Right(setResultado);
+    } catch (e) {
+      return Left(VersionIncorrectaXML());
+    }
   }
 
   @override
   Future<Either<Problema, Set<JuegoJugado>>> obtenerJuegosJugadosPorUsuario(
-      NickFormado nick) {
-    XmlDocument documento = obtenerXMLDeUsuario(nick.valor);
-    Right(obtenerJuegosDesdeXML(documento));
-    throw UnimplementedError();
+      NickFormado nick) async{
+    List<String> losXml = _obtenerXmlJugadasDelDisco(nombre: nick.valor);
+    final resulatdo = _obtenerJuegosJugadosDesdeXml(losXml);
+    return resulatdo;
   }
 }
