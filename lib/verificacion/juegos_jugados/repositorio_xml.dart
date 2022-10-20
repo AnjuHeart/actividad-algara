@@ -33,10 +33,9 @@ class RepositorioXmlPruebas extends RepositorioXml{
 
   @override
   Future<Either<Problema, List<String>>> obtenerXml(NickFormado nick) async{
-    List<String> jugadasPorPaginas = [];
     if(nick.valor == "benthor"){
       try {
-        String elXml = File('./test/verificacion/juegos_jugados/benthor.xml').readAsStringSync();
+        String elXml = File('./test/verificacion/juegos_jugados/benthor1.xml').readAsStringSync();
         int cuantasPaginas = _obtenerCuantasPaginasDesdeXml(elXml);
         List<String> nombresPaginas = _obtenerNombresPaginas(cuantasPaginas, nick);
         return Right(nombresPaginas.map((e) => File(e).readAsStringSync()).toList());
@@ -45,7 +44,14 @@ class RepositorioXmlPruebas extends RepositorioXml{
       }
     }
     if(nick.valor == "fokuleh"){
-      return Right(jugadasPorPaginas);
+      try {
+        String elXml = File('./test/verificacion/juegos_jugados/fokuleh1.xml').readAsStringSync();
+        int cuantasPaginas = _obtenerCuantasPaginasDesdeXml(elXml);
+        List<String> nombresPaginas = _obtenerNombresPaginas(cuantasPaginas, nick);
+        return Right(nombresPaginas.map((e) => File(e).readAsStringSync()).toList());
+      } catch (e) {
+        return Left(VersionIncorrectaXML());
+      }
     }
     return Left(UsuarioNoRegistrado());
     
