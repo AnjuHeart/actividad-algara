@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plays username="fokuleh" userid="1518480" total="7" page="4" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <play id="54511243" date="2021-09-25" quantity="1" length="115" incomplete="0" nowinstats="0" location="Casa Club">
+        <item name="The Red Cathedral" objecttype="thing" objectid="227224">
+            <subtypes>
+                <subtype value="boardgame" />
+                <subtype value="boardgameintegration" />
+            </subtypes>
+        </item>
+        <players>
+            <player username="fokuleh" userid="1518480" name="Juan Carlos" startposition="1" color="White" score="68" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="Martin Perales" startposition="2" color="White" score="43" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="Sousa" startposition="3" color="White" score="16" new="0" rating="0" win="0" />
+            <player username="Shammuk" userid="592933" name="Christian Solano" startposition="4" color="White" score="39" new="0" rating="0" win="0" />
+        </players>
+    </play>
+</plays>

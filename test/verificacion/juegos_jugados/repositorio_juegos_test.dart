@@ -79,4 +79,7 @@ void main() {
             idPropuesta: "70919", nombrePropuesta: "Takenoko")),
         true);
   });*/
+  test('funcion numero de paginas regresa 4 con fokuleh', () async{
+    RepositorioJuegosJugadosPruebas repositorio = RepositorioJuegosJugadosPruebas();
+  });
 }

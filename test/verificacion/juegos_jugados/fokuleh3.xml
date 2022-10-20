@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plays username="fokuleh" userid="1518480" total="7" page="3" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <play id="56591056" date="2021-12-23" quantity="1" length="8" incomplete="0" nowinstats="0" location="Casa Juandalf">
+        <item name="No Thanks!" objecttype="thing" objectid="12942">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <players>
+            <player username="fokuleh" userid="1518480" name="Juan Carlos" startposition="1" color="White" score="-35" new="0" rating="0" win="0" />
+            <player username="juandalf" userid="482490" name="Juandalf" startposition="2" color="White" score="-16" new="0" rating="0" win="0" />
+            <player username="Shammuk" userid="592933" name="Christian Solano" startposition="3" color="White" score="-57" new="0" rating="0" win="0" />
+            <player username="Ulises21" userid="849704" name="Ulises Vazquez" startposition="4" color="White" score="-48" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="Melki" startposition="5" color="White" score="-15" new="0" rating="0" win="1" />
+        </players>
+    </play>
+	<play id="56490886" date="2021-12-19" quantity="1" length="67" incomplete="0" nowinstats="0" location="Casa Club">
+        <item name="Abyss" objecttype="thing" objectid="155987">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <players>
+            <player username="fokuleh" userid="1518480" name="Juan Carlos" startposition="1" color="White" score="56" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="Martin Perales" startposition="2" color="White" score="53" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="Sousa" startposition="3" color="White" score="73" new="0" rating="0" win="0" />
+            <player username="Shammuk" userid="592933" name="Christian Solano" startposition="4" color="White" score="76" new="0" rating="0" win="1" />
+            <player username="Ulises21" userid="849704" name="Ulises Vazquez" startposition="5" color="White" score="46" new="0" rating="0" win="0" />
+        </players>
+    </play>
+</plays>

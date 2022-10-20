@@ -31,6 +31,11 @@ class RepositorioJuegosJugadosPruebas extends RepositorioJuegosJugados {
 
     return paginas;
   }
+  
+  Either<Problema, int> numeroDePaginasPruebas (String elXml){
+
+    return Right(0);
+  }
 
   List<String> obtenerListaDeDireccionesXml(String nombre, int totalPaginas){
     List<String> direcciones =[];
@@ -38,10 +43,12 @@ class RepositorioJuegosJugadosPruebas extends RepositorioJuegosJugados {
       if(nombre == "benthor"){
         direcciones.add("./test/verificacion/juegos_jugados/benthor.xml");
       }
-      
-
+      if(nombre == "benthor"){
+        direcciones.add("./test/verificacion/juegos_jugados/fokuleh"+i.toString()+".xml");
+      }
       //direcciones.add("https://boardgamegeek.com/xmlapi2/plays?username=$nombre&pag=$i")
     }
+    return direcciones;
   }
   
   List<String> _obtenerXmlJugadasDelDisco({required String nombre}){

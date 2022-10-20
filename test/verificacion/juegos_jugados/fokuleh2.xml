@@ -1,0 +1,31 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<plays username="fokuleh" userid="1518480" total="7" page="2" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
+    <play id="59804191" date="2022-04-09" quantity="1" length="32" incomplete="0" nowinstats="0" location="Casa Club">
+        <item name="Deep Sea Adventure" objecttype="thing" objectid="169654">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <players>
+            <player username="fokuleh" userid="1518480" name="Juan Carlos" startposition="1" color="White" score="0" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="NechiWero" startposition="2" color="White" score="0" new="0" rating="0" win="0" />
+            <player username="Ulises21" userid="849704" name="Ulises Vazquez" startposition="3" color="White" score="8" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="Jose" startposition="4" color="White" score="0" new="0" rating="0" win="0" />
+        </players>
+    </play>
+	<play id="59813649" date="2022-04-09" quantity="1" length="28" incomplete="0" nowinstats="0" location="Casa Club">
+        <item name="Fantasy Realms" objecttype="thing" objectid="223040">
+            <subtypes>
+                <subtype value="boardgame" />
+            </subtypes>
+        </item>
+        <players>
+            <player username="fokuleh" userid="1518480" name="Juan Carlos" startposition="1" color="White" score="146" new="0" rating="0" win="0" />
+            <player username="" userid="0" name="NechiWero" startposition="2" color="White" score="167" new="0" rating="0" win="0" />
+            <player username="Ulises21" userid="849704" name="Ulises Vazquez" startposition="3" color="White" score="126" new="0" rating="0" win="0" />
+            <player username="Shammuk" userid="592933" name="Christian Solano" startposition="4" color="White" score="190" new="0" rating="0" win="1" />
+            <player username="" userid="0" name="Jose" startposition="5" color="White" score="189" new="0" rating="0" win="0" />
+        </players>
+    </play>
+</plays>
