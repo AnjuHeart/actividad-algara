@@ -17,12 +17,10 @@ class RepositorioXmlPruebas extends RepositorioXml{
     int totalJugadas = int.parse(
         documento.getElement("plays")!.getAttribute("total")!);
     int paginas = (totalJugadas / tamanoPagina).ceil();
-
     return paginas;
   }
   
   List<String> _obtenerNombresPaginas(int cuantasPaginas, NickFormado nick){
-    
     var base = './test/verificacion/juegos_jugados/${nick.valor}';
     List<String> lista = [];
     for (var i = 1; i <= cuantasPaginas; i++) {
@@ -35,7 +33,7 @@ class RepositorioXmlPruebas extends RepositorioXml{
   Future<Either<Problema, List<String>>> obtenerXml(NickFormado nick) async{
     if(nick.valor == "benthor"){
       try {
-        String elXml = File('./test/verificacion/juegos_jugados/benthor1.xml').readAsStringSync();
+        String elXml = File('./test/verificacion/juegos_jugados/${nick.valor}1.xml').readAsStringSync();
         int cuantasPaginas = _obtenerCuantasPaginasDesdeXml(elXml);
         List<String> nombresPaginas = _obtenerNombresPaginas(cuantasPaginas, nick);
         return Right(nombresPaginas.map((e) => File(e).readAsStringSync()).toList());
@@ -45,7 +43,7 @@ class RepositorioXmlPruebas extends RepositorioXml{
     }
     if(nick.valor == "fokuleh"){
       try {
-        String elXml = File('./test/verificacion/juegos_jugados/fokuleh1.xml').readAsStringSync();
+        String elXml = File('./test/verificacion/juegos_jugados/${nick.valor}1.xml').readAsStringSync();
         int cuantasPaginas = _obtenerCuantasPaginasDesdeXml(elXml);
         List<String> nombresPaginas = _obtenerNombresPaginas(cuantasPaginas, nick);
         return Right(nombresPaginas.map((e) => File(e).readAsStringSync()).toList());
