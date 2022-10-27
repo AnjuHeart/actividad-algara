@@ -31,15 +31,14 @@ void main() {
     RepositorioXmlPruebas repositorioXmlPruebas = RepositorioXmlPruebas();
     RepositorioJuegosJugadosPruebas repositorio =
         RepositorioJuegosJugadosPruebas(repositorioXmlPruebas);
-    final takenoko = JuegoJugado.constructor(idPropuesta: "70919", nombrePropuesta: "Takenoko");
+    final takenoko = JuegoJugado.constructor(
+        idPropuesta: "70919", nombrePropuesta: "Takenoko");
     final respuesta = await repositorio
         .obtenerJuegosJugadosPorUsuario(NickFormado.constructor('benthor'));
     respuesta.match((l) {
       expect(true, equals(false));
     }, (r) {
-      expect(
-          r,
-          contains(takenoko));
+      expect(r, contains(takenoko));
     });
   });
 
@@ -47,16 +46,57 @@ void main() {
     RepositorioXmlPruebas repositorioXmlPruebas = RepositorioXmlPruebas();
     RepositorioJuegosJugadosPruebas repositorio =
         RepositorioJuegosJugadosPruebas(repositorioXmlPruebas);
-    final monopoly = JuegoJugado.constructor(idPropuesta: "9", nombrePropuesta: "Monopoly");
+    final monopoly =
+        JuegoJugado.constructor(idPropuesta: "9", nombrePropuesta: "Monopoly");
     final respuesta = await repositorio
         .obtenerJuegosJugadosPorUsuario(NickFormado.constructor('benthor'));
     respuesta.match((l) {
       //expect(true, equals(false));
       assert(false);
     }, (r) {
-      expect(
-          !r.contains(monopoly),
-          true);
+      expect(!r.contains(monopoly), true);
+    });
+  });
+  group('Pruebas para fokuleh', () {
+    RepositorioXmlPruebas repositorioXmlPruebas = RepositorioXmlPruebas();
+    RepositorioJuegosJugadosPruebas repositorio =
+        RepositorioJuegosJugadosPruebas(repositorioXmlPruebas);
+    test('fokuleh esta bien formado', () async {
+      final respuesta = await repositorio
+          .obtenerJuegosJugadosPorUsuario(NickFormado.constructor('fokuleh'));
+      expect(respuesta.isRight(), true);
+    });
+    test('fokuleh ha jugado 6 juegos', () async {
+      final respuesta = await repositorio
+          .obtenerJuegosJugadosPorUsuario(NickFormado.constructor('fokuleh'));
+      respuesta.match((l) {
+        expect(true, equals(false));
+      }, (r) {
+        expect(r.length, equals(6));
+      });
+    });
+    test('fokuleh ha jugado a Fantasy Realms con id 223040', ()async{
+      final fantasyRealms = JuegoJugado.constructor(
+        idPropuesta: "223040", nombrePropuesta: "Fantasy Realms");
+    final respuesta = await repositorio
+        .obtenerJuegosJugadosPorUsuario(NickFormado.constructor('fokuleh'));
+    respuesta.match((l) {
+      expect(true, equals(false));
+    }, (r) {
+      expect(r.contains(fantasyRealms), true);
+    });
+    });
+    test('fokuleh no ha jugado al monopoly', ()async{
+      final monopoly =
+        JuegoJugado.constructor(idPropuesta: "9", nombrePropuesta: "Monopoly");
+    final respuesta = await repositorio
+        .obtenerJuegosJugadosPorUsuario(NickFormado.constructor('fokuleh'));
+    respuesta.match((l) {
+      //expect(true, equals(false));
+      assert(false);
+    }, (r) {
+      expect(!r.contains(monopoly), true);
+    });
     });
   });
 }
