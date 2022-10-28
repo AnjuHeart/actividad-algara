@@ -99,4 +99,45 @@ void main() {
     });
     });
   });
+  group('pruebas para repositorio real', (){
+    test('benthor tiene X juegos', () async{
+      RepositorioXmlReal repositorioXml = RepositorioXmlReal();
+      RepositorioJuegosJugadosPruebas repositorioJuegos = RepositorioJuegosJugadosPruebas(repositorioXml);
+      final respuesta = await repositorioJuegos.obtenerJuegosJugadosPorUsuario(NickFormado.constructor('benthor'));
+      respuesta.match(
+        (l){
+          assert(false);
+        }, 
+        (r){
+          expect(r.length, equals(429));
+        });
+    });
+    test('benthor ha jugado a Mascarade 139030', ()async{
+      RepositorioXmlReal repositorioXml = RepositorioXmlReal();
+      RepositorioJuegosJugadosPruebas repositorioJuegos = RepositorioJuegosJugadosPruebas(repositorioXml);
+      final mascarade = JuegoJugado.constructor(idPropuesta: "139030", nombrePropuesta: "Mascarade");
+      final respuesta = await repositorioJuegos.obtenerJuegosJugadosPorUsuario(NickFormado.constructor('benthor'));
+      respuesta.match(
+        (l){
+          assert(false);
+        }, 
+        (r){
+          expect(r.contains(mascarade), true);
+        });
+    });
+
+    test('fokuleh ha jugado a Scythe 169786', ()async{
+      RepositorioXmlReal repositorioXml = RepositorioXmlReal();
+      RepositorioJuegosJugadosPruebas repositorioJuegos = RepositorioJuegosJugadosPruebas(repositorioXml);
+      final scythe = JuegoJugado.constructor(idPropuesta: "169786", nombrePropuesta: "Scythe");
+      final respuesta = await repositorioJuegos.obtenerJuegosJugadosPorUsuario(NickFormado.constructor('fokuleh'));
+      respuesta.match(
+        (l){
+          assert(false);
+        }, 
+        (r){
+          expect(r.contains(scythe), true);
+        });
+    });
+  });
 }

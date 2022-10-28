@@ -30,4 +30,11 @@ void main() {
     final resulatdo = await repositorio.obtenerXml(NickFormado.constructor("loqueseaja"));
     expect(resulatdo.isLeft(), true);
   });
+  group('pruebas con repositorio real', (){
+    test('benthor es funcional', () async{
+      RepositorioXmlReal repositorioReal = RepositorioXmlReal();
+      final resultado = await repositorioReal.obtenerXml(NickFormado.constructor('benthor'));
+      expect(resultado.isRight(), true);
+    });
+  });
 }
