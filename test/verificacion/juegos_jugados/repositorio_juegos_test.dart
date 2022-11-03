@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_app_1/dominio/coleccion_juegos.dart';
 import 'package:flutter_app_1/dominio/nick_formado.dart';
 import 'package:flutter_app_1/verificacion/juegos_jugados/repositorio_juegos.dart';
@@ -109,7 +111,35 @@ void main() {
           assert(false);
         }, 
         (r){
+          const nombreArchivo = './test/verificacion/juegos_jugados/benthorFinal.txt';
+          String strJuegos = "";
+          for (JuegoJugado juego in r){
+            strJuegos += juego.id + "," + juego.nombre + "\n";
+          }
+          var file = File(nombreArchivo);
+          var sink = file.openWrite();
+          sink.write(strJuegos);
           expect(r.length, equals(429));
+        });
+    });
+    test('fokuleh tiene X juegos', () async{
+      RepositorioXmlReal repositorioXml = RepositorioXmlReal();
+      RepositorioJuegosJugadosPruebas repositorioJuegos = RepositorioJuegosJugadosPruebas(repositorioXml);
+      final respuesta = await repositorioJuegos.obtenerJuegosJugadosPorUsuario(NickFormado.constructor('fokuleh'));
+      respuesta.match(
+        (l){
+          assert(false);
+        }, 
+        (r){
+          const nombreArchivo = './test/verificacion/juegos_jugados/fokulehFinal.txt';
+          String strJuegos = "";
+          for (JuegoJugado juego in r){
+            strJuegos += juego.id + "," + juego.nombre + "\n";
+          }
+          var file = File(nombreArchivo);
+          var sink = file.openWrite();
+          sink.write(strJuegos);
+          expect(r.length, equals(150));
         });
     });
     test('benthor ha jugado a Mascarade 139030', ()async{

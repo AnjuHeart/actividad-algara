@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
+import 'package:flutter_app_1/dominio/coleccion_juegos.dart';
 import 'package:flutter_app_1/dominio/nick_formado.dart';
 import 'package:flutter_app_1/dominio/problemas.dart';
 import 'package:flutter_app_1/verificacion/data_usuario.dart';
@@ -31,7 +34,7 @@ class SolicitandoNombre extends EstadoVerificacion {}
 class EsperandoConfirmacionNombre extends EstadoVerificacion {}
 
 class MostrandoJuegos extends EstadoVerificacion {
-  final List<String> juegos;
+  final Set<JuegoJugado> juegos;
 
   MostrandoJuegos(this.juegos);
 }
@@ -84,10 +87,31 @@ class BlocVerificacion extends Bloc<EventoVerificacion, EstadoVerificacion> {
               r.pais, r.estado, event.nombreAProcesar)));
     });
     on<IrAJuegos>((event, emit) {
-      ChecadorDeJugadasDePrueba checador = ChecadorDeJugadasDePrueba();
-      var coleccionUsuario =
-          checador.obtenerJuegos(NickFormado.constructor(event.nombreUsuario));
-      emit(MostrandoJuegos(coleccionUsuario.juegos));
+      String file = "";
+      if(event.nombreUsuario == "fokuleh"){
+        try {
+          file = File('./test/verificacion/juegos_jugados/fokulehFinal.txt').readAsStringSync();
+        } catch (e) {
+          file = "1,prueba\n2,prueba2";
+        }
+      }
+      if(event.nombreUsuario == "benthor"){
+        try {
+          file = File('./test/verificacion/juegos_jugados/benthorFinal.txt').readAsStringSync();
+        } catch (e) {
+          file = "1,prueba\n2,prueba2";
+        }
+      }
+      Set<JuegoJugado> juegos = {};
+      for (var juego in file.split('\n')) {
+        String id = juego.split(',')[0];
+        String nombre = juego.split(',')[1];
+        juegos.add(JuegoJugado.constructor(idPropuesta: id, nombrePropuesta: nombre));
+      }
+      for (var juego in juegos) {
+        print(juego.nombre);
+      }
+      emit(MostrandoJuegos(juegos));
     });
   }
 }
