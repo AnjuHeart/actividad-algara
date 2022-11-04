@@ -88,28 +88,30 @@ class BlocVerificacion extends Bloc<EventoVerificacion, EstadoVerificacion> {
     });
     on<IrAJuegos>((event, emit) {
       String file = "";
-      if(event.nombreUsuario == "fokuleh"){
+      if (event.nombreUsuario == "fokuleh") {
         try {
-          file = File('./test/verificacion/juegos_jugados/fokulehFinal.txt').readAsStringSync();
+          file = File('./lib/verificacion/juegos_jugados/fokulehFinal.txt')
+              .readAsStringSync();
         } catch (e) {
           file = "1,prueba\n2,prueba2";
         }
       }
-      if(event.nombreUsuario == "benthor"){
+      if (event.nombreUsuario == "benthor") {
         try {
-          file = File('./test/verificacion/juegos_jugados/benthorFinal.txt').readAsStringSync();
+          file = File('./lib/verificacion/juegos_jugados/benthorFinal.txt')
+              .readAsStringSync();
         } catch (e) {
           file = "1,prueba\n2,prueba2";
         }
       }
       Set<JuegoJugado> juegos = {};
       for (var juego in file.split('\n')) {
-        String id = juego.split(',')[0];
-        String nombre = juego.split(',')[1];
-        juegos.add(JuegoJugado.constructor(idPropuesta: id, nombrePropuesta: nombre));
-      }
-      for (var juego in juegos) {
-        print(juego.nombre);
+        if (juego != "") {
+          String id = juego.split(',')[0];
+          String nombre = juego.split(',')[1];
+          juegos.add(JuegoJugado.constructor(
+              idPropuesta: id, nombrePropuesta: nombre));
+        }
       }
       emit(MostrandoJuegos(juegos));
     });

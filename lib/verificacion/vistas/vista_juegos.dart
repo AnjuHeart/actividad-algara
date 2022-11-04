@@ -15,7 +15,6 @@ class VistaMostrandoJuegos extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ListBuilder,
           TextButton(
               onPressed: () {
                 var bloc = context.read<BlocVerificacion>();
