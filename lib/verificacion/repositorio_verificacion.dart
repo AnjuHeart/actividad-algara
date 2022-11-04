@@ -116,7 +116,7 @@ class RepositorioPruebasVerificacion extends RepositorioVerificacion {
                         <steadmaccount value=""/>
                         <trdaderating value="362"/>
                       </user>""";
-    if (nick.valor == 'benthor') {
+    if (nick.valor == 'benthor' || nick.valor == 'fokuleh') {
       final documento = XmlDocument.parse(_benthor);
       return obenerRegistroUsuarioDesdeXML(documento);
     }

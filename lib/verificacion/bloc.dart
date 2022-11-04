@@ -5,6 +5,7 @@ import 'package:flutter_app_1/dominio/coleccion_juegos.dart';
 import 'package:flutter_app_1/dominio/nick_formado.dart';
 import 'package:flutter_app_1/dominio/problemas.dart';
 import 'package:flutter_app_1/verificacion/data_usuario.dart';
+import 'package:flutter_app_1/verificacion/juegos_jugados/repositorio_juegos.dart';
 import 'package:flutter_app_1/verificacion/repositorio_verificacion.dart';
 
 class EventoVerificacion {}
@@ -35,8 +36,9 @@ class EsperandoConfirmacionNombre extends EstadoVerificacion {}
 
 class MostrandoJuegos extends EstadoVerificacion {
   final Set<JuegoJugado> juegos;
+  final String jugador;
 
-  MostrandoJuegos(this.juegos);
+  MostrandoJuegos(this.juegos, this.jugador);
 }
 
 class MostrandoNombre extends EstadoVerificacion {
@@ -113,7 +115,7 @@ class BlocVerificacion extends Bloc<EventoVerificacion, EstadoVerificacion> {
               idPropuesta: id, nombrePropuesta: nombre));
         }
       }
-      emit(MostrandoJuegos(juegos));
+      emit(MostrandoJuegos(juegos, event.nombreUsuario));
     });
   }
 }
