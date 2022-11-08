@@ -1,11 +1,9 @@
 import 'dart:io';
-
 import 'package:flutter_app_1/dominio/coleccion_juegos.dart';
 import 'package:flutter_app_1/dominio/nick_formado.dart';
 import 'package:flutter_app_1/verificacion/juegos_jugados/repositorio_juegos.dart';
 import 'package:flutter_app_1/verificacion/juegos_jugados/repositorio_xml.dart';
 import 'package:test/test.dart';
-import 'package:xml/xml.dart';
 
 void main() {
   test('Para benthor esta bien formado', () async {

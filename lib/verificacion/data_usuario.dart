@@ -1,7 +1,6 @@
 import 'package:flutter_app_1/dominio/nick_formado.dart';
 import 'package:flutter_app_1/dominio/coleccion_juegos.dart';
 import 'package:xml/xml.dart';
-import 'package:http/http.dart' as http;
 
 abstract class ChecadorDeJugadas {
   ColeccionJuegos obtenerJuegos(NickFormado nick);
