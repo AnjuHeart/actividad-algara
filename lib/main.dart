@@ -63,6 +63,7 @@ class Aplicacion extends StatelessWidget {
               return VistaMostrandoJuegos(
                 juegos: estado.juegos,
                 jugador: estado.jugador,
+                datosJuego: estado.datosJuego,
               );
             }
             return const Center(child: Text('huye'));
